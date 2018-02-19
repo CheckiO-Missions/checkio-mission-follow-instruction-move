@@ -29,7 +29,6 @@ checkio.referee.cover_codes
 from checkio.signals import ON_CONNECT
 from checkio import api
 from checkio.referees.io import CheckiOReferee
-from checkio.referees import cover_codes
 
 from tests import TESTS
 
@@ -38,11 +37,7 @@ api.add_listener(
     CheckiOReferee(
         tests=TESTS,
         function_name={
-            "python": "sum_two",
-            "js": "sumTwo"
-        },
-        cover_code={
-            'python-3': cover_codes.unwrap_args,
-            'js-node': cover_codes.js_unwrap_args
+            "python": "follow",
+            "js": "follow"
         }
     ).on_ready)

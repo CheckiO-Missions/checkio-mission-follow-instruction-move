@@ -1,20 +1,31 @@
 <!-- Describe task in general -->
 
+<p><i>You reecive a letter from your friend, whom you haven't seen for a while. In this letter he gives you an instruction how you can find tresure he hidded.</i></p>
+
 <p>
-    Sum two passed ints
+    In this mission you should follow a givin list of instruction which will get you to a certein point on map. A list of instructions is a string, each letter of this string tells you a direction of your next step.
 </p>
 
-<p style="text-align: center;">
-    <img  title="example" src="{{MEDIA}}example.png" alt="example" style="max-height: 83px"/>
-</p>
+<p>Letter "f" - tells you to move forward, "b" - backward, "l" - left and "r" - right.</p>
+
+<p>It means that if your instruction is "fflff" than you should two times move forward, than one step left and again 2 times forward.</p>
+
+<p>Now, let's imagin you are in position (0,0). If you move forward your position changes to (0, 1)? if you move again it will change to (0, 2), if your next step is left then your position will change to (1, 2). After next two steps forward your coodinates will be (1, 4)</p>
+
+<p>Your goal is to find your final coordinates. Like in our case it would be (1, 4)</p>
 
 <!-- Explain input and output values -->
 <p>
-    <strong>Input: </strong> Two arguments. Both are int
+    <strong>Input: </strong> String.
 </p>
 
 <p>
-    <strong>Output: </strong> Int. 
+    <strong>Output: </strong> 
+    {% if interpreter.slug == "js-node" %}
+    Array of two ints
+    {% else %}
+    Tuple of two ints
+    {% endif %}
 </p>
 
 
@@ -25,12 +36,14 @@
     </p>
 
 {% if interpreter.slug == "js-node" %}
-<pre class="brush: javascript">sumTwo(2, 3) == 5
-sumTwo(5, 7) == 12
+<pre class="brush: javascript">follow("fflff") == [1, 4]
+follow("ffrff") == [-1, 4]
+follow("fblr") == [0, 0]
 </pre>
 {% else %}
-<pre class="brush: python">sum_two(2, 3) == 5
-sum_two(5, 7) == 12
+<pre class="brush: python">follow("fflff") == (1, 4)
+follow("ffrff") == (-1, 4)
+follow("fblr") == (0, 0)
 </pre>
 {% endif %}
 </div>
@@ -38,12 +51,12 @@ sum_two(5, 7) == 12
 <!-- The section is optional -->
 <p class="for_info_only">
     <strong>How it is used: </strong>
-    <i>(math is used everywhere)</i>
+    <i>In games with map</i>
 </p>
 
 <!-- Here you can explain some constraints for input-->
 <!-- The section is optional -->
 <p>
     <strong>Precondition:</strong>
-    <i>both given ints should be between -1000 and 1000</i>
+    <i>chars f,b,l and r are only allowed</i>
 </p>
