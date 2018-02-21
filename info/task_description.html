@@ -12,9 +12,9 @@
 
 <p>It means that if the list of your instructions is "fflff" then you should move forward two times, make one step to the left and then again move two times forward.</p>
 
-<p>Now, let's imagine that you are in the position (0,0). If you move forward your position will change to (0, 1). If you move again it will be (0, 2). If your next step is to the left then your position will become (1, 2). After the next two steps forward your coordinates will be (1, 4)</p>
+<p>Now, let's imagine that you are in the position (0,0). If you move forward your position will change to (0, 1). If you move again it will be (0, 2). If your next step is to the left then your position will become (-1, 2). After the next two steps forward your coordinates will be (-1, 4)</p>
 
-<p>Your goal is to find your final coordinates. Like in our case they are (1, 4)</p>
+<p>Your goal is to find your final coordinates. Like in our case they are (-1, 4)</p>
 
 <!-- Explain input and output values -->
 <p>
@@ -26,7 +26,7 @@
     {% if interpreter.slug == "js-node" %}
     An array of two ints
     {% else %}
-    A tuple of two ints
+    A tuple (or list) of two ints
     {% endif %}
 </p>
 
@@ -38,13 +38,13 @@
     </p>
 
 {% if interpreter.slug == "js-node" %}
-<pre class="brush: javascript">follow("fflff") == [1, 4]
-follow("ffrff") == [-1, 4]
+<pre class="brush: javascript">follow("fflff") == [-1, 4]
+follow("ffrff") == [1, 4]
 follow("fblr") == [0, 0]
 </pre>
 {% else %}
-<pre class="brush: python">follow("fflff") == (1, 4)
-follow("ffrff") == (-1, 4)
+<pre class="brush: python">follow("fflff") == (-1, 4)
+follow("ffrff") == (1, 4)
 follow("fblr") == (0, 0)
 </pre>
 {% endif %}

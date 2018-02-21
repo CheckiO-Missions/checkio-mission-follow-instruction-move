@@ -12,11 +12,11 @@ TESTS = {
     "Basics": [
         {
             "input": "fflff",
-            "answer": [1, 4]
+            "answer": [-1, 4]
         },
         {
             "input": "ffrff",
-            "answer": [-1, 4]
+            "answer": [1, 4]
         },
         {
             "input": "fblr",
