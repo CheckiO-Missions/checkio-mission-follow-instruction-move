@@ -11,8 +11,8 @@ if (!global.is_checking) {
     console.log(follow("fflff"))
 
     // These "asserts" are used for self-checking and not for an auto-testing
-    assert.equal(follow("fflff"), [-1, 4])
-    assert.equal(follow("ffrff"), [1, 4])
-    assert.equal(follow("fblr"), [0, 0])
+    assert.deepEqual(follow("fflff"), [-1, 4])
+    assert.deepEqual(follow("ffrff"), [1, 4])
+    assert.deepEqual(follow("fblr"), [0, 0])
     console.log("Coding complete? Click 'Check' to earn cool rewards!");
 }
