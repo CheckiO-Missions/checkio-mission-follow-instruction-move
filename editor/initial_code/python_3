@@ -1,4 +1,6 @@
-def follow(instructions):
+from typing import Tuple
+
+def follow(instructions: str) -> Tuple[int, int]:
     # your code here
     return (0, 0)
 
