@@ -1,6 +1,6 @@
 <!-- Describe task in general -->
 
-<p><i>You’ve received a letter from a friend whom you haven't seen or heard from for a while. In this letter he gives you instructions on how to find a hidden treasure.</i></p>
+<p><i>You’ve received a letter from a friend whom you haven't seen or heard from for a while. In this letter he gives you instructions on how to find a hidden treasure!</i></p>
 
 
 <p>
@@ -8,57 +8,48 @@
 </p>
 
 
-<p>The letter "f" - tells you to move forward, "b" - backward, "l" - left, and "r" - right.</p>
-
-<p>It means that if the list of your instructions is "fflff" then you should move forward two times, make one step to the left and then again move two times forward.</p>
-
-<p>Now, let's imagine that you are in the position (0,0). If you move forward your position will change to (0, 1). If you move again it will be (0, 2). If your next step is to the left then your position will become (-1, 2). After the next two steps forward your coordinates will be (-1, 4)</p>
-
-<p>Your goal is to find your final coordinates. Like in our case they are (-1, 4)</p>
-
-<!-- Explain input and output values -->
 <p>
-    <strong>Input: </strong> A string.
+    The letter <b class="code">"f"</b> - tells you to move forward, <b class="code">"b"</b> -  backward, <b class="code">"l"</b> - left, and <b class="code">"r"</b> - right.
 </p>
 
 <p>
-    <strong>Output: </strong> 
-    {% if interpreter.slug == "js-node" %}
-    An array of two ints
-    {% else %}
-    A tuple (or list) of two ints
-    {% endif %}
+    It means that if the list of your instructions is <b class="code">"fflff"</b> then you should move forward two times, make one step to the left and then again move two times forward.
+</p>
+
+<p>
+    Now, let's imagine that you are in the position <b class="code">(0, 0)</b>. If you move forward your position will change to <b class="code">(0, 1)</b>. If you move again it will be <b class="code">(0, 2)</b>. If your next step is to the left then your position will become <b class="code">(-1, 2)</b>. After the next two steps forward your coordinates will be <b class="code">(-1, 4)</b>.
+</p>
+
+<p>Your goal is to find your final coordinates. Like in our case they are <b class="code">(-1, 4)</b>.</p>
+
+<!-- Explain input and output values -->
+<p>
+    <strong>Input:</strong> A string.
+</p>
+
+<p>
+    <strong>Output:</strong> {% if is_js %}An array of two numbers{% else %} A tuple or list of two integers{% endif %}.
 </p>
 
 
 <!-- Put some usage examples -->
 <div class="for_info_only">
     <p>
-        <strong>Example:</strong>
+        <strong>Examples:</strong>
     </p>
 
-{% if interpreter.slug == "js-node" %}
-<pre class="brush: javascript">follow('fflff') == [-1, 4]
-follow('ffrff') == [1, 4]
-follow('fblr') == [0, 0]
-</pre>
-{% else %}
-<pre class="brush: python">follow("fflff") == (-1, 4)
-follow("ffrff") == (1, 4)
-follow("fblr") == (0, 0)
-</pre>
-{% endif %}
+<pre class="brush: {% if is_js %}javascript{% else %}python{% endif %}">{{init_code_tmpl}}</pre>
 </div>
 <!-- Here you can explain how it can be used in development and what is usage of this. -->
 <!-- The section is optional -->
 <p class="for_info_only">
-    <strong>How it is used: </strong>
-    <i>In games with a map</i>
+    <strong>How it is used:</strong>
+    <i>in games with a map.</i>
 </p>
 
 <!-- Here you can explain some constraints for input-->
 <!-- The section is optional -->
 <p>
     <strong>Precondition:</strong>
-    <i>only chars f,b,l and r are allowed</i>
+    <i>only chars f, b, l and r are allowed.</i>
 </p>

@@ -1,0 +1,138 @@
+<body data-author="freeman_lex">
+<div class="question-answer">
+    <div class="question">
+        <i>Я не маю уявлення, як розв'язувати цю місії.</i>
+    </div>
+    <div class="answer">
+        <p>
+            Зробити чотири кроки уперед довжиною 1 - це те ж саме, що стрибнути раз уперед на довжину 4. Тож, тобі потрібно порахувати загальну кількість кроків у кожному напрямку і потім знайти дві правильні різниці між цими числами.
+        </p>
+    </div>
+</div>
+<div class="question-answer">
+    <div class="question">
+        <i>Добре, з чого мені почати?</i>
+    </div>
+    <div class="answer">
+        <p>
+            У нашому випадку, підрахунок кількості кроків у кожному напрямку означає рахувати кількість кожної унікальної літери в <b class="code">instructions</b>. Оскільки <b class="code">instructions</b> - це рядок, ти можеш скористатися методом <a target="_blank" href="https://www.w3schools.com/python/ref_string_count.asp">string.count()</a>, який робить саме це! Проголоси нову змінну, нехай це буде <b class="code">c</b> зі значенням у вигляді метода.
+        </p>
+        <pre class="brush: python">
+instructions = "ffbrl"
+c = instructions.count
+        </pre>
+    </div>
+</div>
+<div class="question-answer">
+    <div class="question">
+        <i>
+            Як мені використати цю змінну?
+        </i>
+    </div>
+    <div class="answer">
+        <p>
+            Тепер ти можеш викликати цей метод чотири рази (з різним аргументом для кожного напрямку) і знайти твоє загальне зміщення у кожному напрямку.
+        </p>
+        <pre class="brush: python">
+instructions = "ffbrl"
+c = instructions.count
+print(c("r"), c("l"), c("f"), c("b"))
+        </pre>
+        <div class="output">
+            <p>Вивід:</p>
+            <pre>
+1, 1, 2, 1
+            </pre>
+        </div>
+    </div>
+</div>
+<div class="question-answer">
+    <div class="question">
+        <i>
+            Як перетворити ці зміщення в остаточні координати?
+        </i>
+    </div>
+    <div class="answer">
+        <p>
+            Тобі слід подумати про протилежні напрямки, на тій же осі. Якщо ти зробиш чотири кроки вперед і потім два назад, яке твоє остаточне зміщення по цій осі?
+        </p>
+        <p>
+            З опису ти можеш побачити, що перша координата має позитивний напрямок праворуч і негативний - ліворуч (коли крок <b class="code">"l"</b>, ця координата зменшується), друга координата має позитивний напрямок уперед і негативний - назад (коли крок <b class="code">"f"</b>, ця координата зростає).
+        </p>
+    </div>
+</div>
+<div class="question-answer">
+    <div class="question">
+        <i>
+            Які конкретно розрахунки мені слід зробити?
+        </i>
+    </div>
+    <div class="answer">
+        <p>
+            Твої остаточні координати на кожній осі - це різниця між відповідними зміщеннями у позитивному і негативному напрямках. Давай проголосимо дві змінні і знайдемо ці різниці.
+        </p>
+        <pre class="brush: python">
+axis_rl = c("r") - c("l")
+axis_fb = c("f") - c("b")
+        </pre>
+    </div>
+</div>
+<div class="question-answer">
+    <div class="question">
+        <i>То як має виглядати моє остаточне рішення?</i>
+    </div>
+    <div class="answer">
+        <p>
+            Тобі потрібно скомбінувати попередні підказки, обгорнути весь код у вираз функції і повернути кортеж із двох змінних, що мають значення остаточних координат.
+        </p>
+        <p>Here is the whole solution:</p>
+        <pre class="brush: python">
+def follow(instructions: str) -> tuple[int, int] | list[int]:
+
+    c = instructions.count
+    axis_fb = c('f') - c('b')
+    axis_rl = c('r') - c('l')
+    
+    return axis_rl, axis_fb 
+        </pre>
+    </div>
+</div>
+<div class="question-answer">
+    <div class="question">
+        <i>Покажи мені більше розв'язків!<br />
+        Адже я хочу стати справжнім Python Ніндзею!</i>
+    </div>
+    <div class="answer">
+        <p>Звісно, тримай!</p>
+        <p>
+            У цьому розв'язку ти робиш розрахунки у циклі <b class="code">for</b> і оновлюєш значення попередньо проголошених змінних, беручи до уваги вісь, по якій здійснюється кожен крок.
+        </p>
+        <pre class="brush: python">
+def follow(instructions: str) -> tuple[int, int] | list[int]:
+
+    move = {"f": 1, "b": -1, "l": -1, "r": 1}
+    x = y = 0
+    for i in instructions:
+        x += move[i] * (i in "lr")
+        y += move[i] * (i in "fb")
+
+    return x, y
+        </pre>
+        <p>
+            Ти можеш стиснути всю логіку в один рядок, використовуючи вираз <b class="code">lambda</b> (анонімну функцію) і списковий вираз.
+        </p>
+        <pre class="brush: python">
+follow = lambda i: [i.count(x)-i.count(y) for x, y in ('rl', 'fb')]
+        </pre>
+        <p><b>Тисни "Best solutions" в меню місії і побачиш багато інших цікавих розв'язків!</b></p>
+    </div>
+</div>
+<div class="question-answer">
+    <div class="question">
+        <i>Дякую! Тепер я знаю і розумію більше! Все працює як слід!</i>
+    </div>
+    <div class="answer">
+        Приємно це чути!
+    </div>
+</div>
+</body>
