@@ -1,0 +1,138 @@
+<body data-author="freeman_lex">
+<div class="question-answer">
+    <div class="question">
+        <i>I have no idea how to start solving this mission.</i>
+    </div>
+    <div class="answer">
+        <p>
+            To make four steps forward with length 1 is the same as to jump forward once with length 4. So, you need to count the total number of steps in each direction and then find two correct differences between these numbers.
+        </p>
+    </div>
+</div>
+<div class="question-answer">
+    <div class="question">
+        <i>Ok, what should I start from?</i>
+    </div>
+    <div class="answer">
+        <p>
+            In our case counting the number of steps in each direction means to count a number of each unique letter in the <b class="code">instructions</b>. Since <b class="code">instructions</b> is a string, you may use <a target="_blank" href="https://www.w3schools.com/python/ref_string_count.asp">string.count()</a> method, which does exactly this! Declare a new variable, let in be <b class="code">c</b> with the value of method.
+        </p>
+        <pre class="brush: python">
+instructions = "ffbrl"
+c = instructions.count
+        </pre>
+    </div>
+</div>
+<div class="question-answer">
+    <div class="question">
+        <i>
+            Ok, how to use this variable?
+        </i>
+    </div>
+    <div class="answer">
+        <p>
+            Now you may call this method four times (with different argument for each direction) and find out your total shift in each direction. 
+        </p>
+        <pre class="brush: python">
+instructions = "ffbrl"
+c = instructions.count
+print(c("r"), c("l"), c("f"), c("b"))
+        </pre>
+        <div class="output">
+            <p>Output:</p>
+            <pre>
+1, 1, 2, 1
+            </pre>
+        </div>
+    </div>
+</div>
+<div class="question-answer">
+    <div class="question">
+        <i>
+            How to transform these shifts into the final coordinates?
+        </i>
+    </div>
+    <div class="answer">
+        <p>
+            You should think about opposite directions, on the same axis. If you make four steps forward and then two steps backward, what is your final shift on this axis?
+        </p>
+        <p>
+            From the description you may see that the first coordinate has positive direction right and negative direction left (when the step is <b class="code">"l"</b>, this coordinate decreases), the second coordinate has positive direction forward and negative - backward (when the step is <b class="code">"f"</b>, this coordinates increases).
+        </p>
+    </div>
+</div>
+<div class="question-answer">
+    <div class="question">
+        <i>
+            What exact calculations should I make?
+        </i>
+    </div>
+    <div class="answer">
+        <p>
+            Your final coordinate in each axis is a difference between respective shifts in positive and negative directions. Let's declare two variables and find these differences.
+        </p>
+        <pre class="brush: python">
+axis_rl = c("r") - c("l")
+axis_fb = c("f") - c("b")
+        </pre>
+    </div>
+</div>
+<div class="question-answer">
+    <div class="question">
+        <i>So, how my final solution should look like?</i>
+    </div>
+    <div class="answer">
+        <p>
+            You need to combine previous hints, wrap the whole code into function expression and return the tuple of two variables, that stores final coordinates.
+        </p>
+        <p>Here is the whole solution:</p>
+        <pre class="brush: python">
+def follow(instructions: str) -> tuple[int, int] | list[int]:
+
+    c = instructions.count
+    axis_fb = c('f') - c('b')
+    axis_rl = c('r') - c('l')
+    
+    return axis_rl, axis_fb 
+        </pre>
+    </div>
+</div>
+<div class="question-answer">
+    <div class="question">
+        <i>Show me more solutions!<br />
+        'Cause I wanna be a real Python Ninnjaa!</i>
+    </div>
+    <div class="answer">
+        <p>Sure, grab it!</p>
+        <p>
+            In this solution you make calculations in <b class="code">for</b> loop and update pre-declared variables, taking into consideration the axis for each move. 
+        </p>
+        <pre class="brush: python">
+def follow(instructions: str) -> tuple[int, int] | list[int]:
+
+    move = {"f": 1, "b": -1, "l": -1, "r": 1}
+    x = y = 0
+    for i in instructions:
+        x += move[i] * (i in "lr")
+        y += move[i] * (i in "fb")
+
+    return x, y
+        </pre>
+        <p>
+            You may compress all the logic in one line using <b class="code">lambda</b> expression (anonymous function) and list comprehension.
+        </p>
+        <pre class="brush: python">
+follow = lambda i: [i.count(x)-i.count(y) for x, y in ('rl', 'fb')]
+        </pre>
+        <p><b>Click "Best solutions" at mission menu and see a lot of other interesting solutions!</b></p>
+    </div>
+</div>
+<div class="question-answer">
+    <div class="question">
+        <i>Thanks! I know and understand more now! Everything works fine!</i>
+    </div>
+    <div class="answer">
+        Glad to hear it!
+    </div>
+</div>
+</body>
