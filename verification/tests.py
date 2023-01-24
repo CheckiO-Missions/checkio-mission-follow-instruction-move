@@ -21,7 +21,7 @@ TESTS = {
         {
             "input": ["fblr"],
             "answer": [0, 0]
-        }
+        },
     ],
     "Extra": [
         {
@@ -35,6 +35,6 @@ TESTS = {
         {
             "input": ["frfr"],
             "answer": [2, 2]
-        }
+        },
     ]
 }
