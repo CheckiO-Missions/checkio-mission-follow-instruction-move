@@ -86,6 +86,7 @@ axis_fb = c("f") - c("b")
             Тобі потрібно скомбінувати попередні підказки, обгорнути весь код у вираз функції і повернути кортеж із двох змінних, що мають значення остаточних координат.
         </p>
         <p>Here is the whole solution:</p>
+        <div class="spoiler">
         <pre class="brush: python">
 def follow(instructions: str) -> tuple[int, int] | list[int]:
 
@@ -95,6 +96,7 @@ def follow(instructions: str) -> tuple[int, int] | list[int]:
     
     return axis_rl, axis_fb 
         </pre>
+        </div>
     </div>
 </div>
 <div class="question-answer">
@@ -107,6 +109,7 @@ def follow(instructions: str) -> tuple[int, int] | list[int]:
         <p>
             У цьому розв'язку ти робиш розрахунки у циклі <b class="code">for</b> і оновлюєш значення попередньо проголошених змінних, беручи до уваги вісь, по якій здійснюється кожен крок.
         </p>
+        <div class="spoiler">
         <pre class="brush: python">
 def follow(instructions: str) -> tuple[int, int] | list[int]:
 
@@ -118,12 +121,15 @@ def follow(instructions: str) -> tuple[int, int] | list[int]:
 
     return x, y
         </pre>
+        </div>
         <p>
             Ти можеш стиснути всю логіку в один рядок, використовуючи вираз <b class="code">lambda</b> (анонімну функцію) і списковий вираз.
         </p>
+        <div class="spoiler">
         <pre class="brush: python">
 follow = lambda i: [i.count(x)-i.count(y) for x, y in ('rl', 'fb')]
         </pre>
+        </div>
         <p><b>Тисни "Best solutions" в меню місії і побачиш багато інших цікавих розв'язків!</b></p>
     </div>
 </div>
