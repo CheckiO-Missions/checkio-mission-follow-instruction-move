@@ -1,0 +1,55 @@
+<!-- Describe task in general -->
+
+<p><i>Vous avez reçu une lettre d'un ami que vous n'avez pas vu ni entendu depuis longtemps. Dans cette lettre, il vous donne des instructions pour trouver un trésor caché!</i></p>
+
+
+<p>
+   Dans cette mission, vous devez suivre une liste d'instructions qui vous mènera à un certain point sur la carte. Une liste d'instructions est une <span>chaîne</span> <span>(string)</span>, chaque lettre de cette chaîne vous indique la direction de votre prochaine étape.
+</p>
+
+
+<p>
+    La lettre <b class="code">"f"</b> - vous indique d'avancer, <b class="code">"b"</b> - de reculer, <b class="code">"l"</b> - de partir à gauche, et <b class="code">"r"</b> - de partir à droite.
+</p>
+
+<p>
+    Cela signifie que si la liste de vos instructions est <b class="code">"fflff"</b>, vous devez avancer deux fois, faire un pas vers la gauche et avancer à nouveau deux fois.
+</p>
+
+<p>
+    Imaginons maintenant que vous vous trouviez à la position <b class="code">(0, 0)</b>. Si vous avancez, votre position deviendra <b class="code">(0, 1)</b>. Si vous avancez à nouveau, votre position sera <b class="code">(0, 2)</b>. Si votre prochain pas est vers la gauche, votre position deviendra <b class="code">(-1, 2)</b>. Après les deux pas suivants, vos coordonnées seront <b class="code">(-1, 4)</b>.
+</p>
+
+<p>Votre objectif est de trouver vos coordonnées finales. Dans notre cas, il s'agit de <b class="code">(-1, 4)</b>.</p>
+
+<!-- Explain input and output values -->
+<p>
+   <strong>Entrée:</strong> Une <span>chaîne de caractères</span> <span>(string)</span>.
+</p>
+
+<p>
+   <strong>Sortie:</strong> {% if is_js %}Un <span>tableau</span> <span>(array)</span> de deux <span>nombres</span> <span>(numbers)</span>{% else %} Un <span>tuple</span> ou une <span>liste</span> <span>(list)</span> de deux <span>entiers</span> <span>(integers)</span>{% endif %}.
+</p>
+
+
+<!-- Put some usage examples -->
+<div class="for_info_only">
+    <p>
+        <strong>Exemples:</strong>
+    </p>
+
+<pre class="brush: {% if is_js %}javascript{% else %}python{% endif %}">{{init_code_tmpl}}</pre>
+</div>
+<!-- Here you can explain how it can be used in development and what is usage of this. -->
+<!-- The section is optional -->
+<p class="for_info_only">
+    <strong>Comment l'utiliser:</strong>
+    <i>dans les jeux avec une carte.</i>
+</p>
+
+<!-- Here you can explain some constraints for input-->
+<!-- The section is optional -->
+<p>
+    <strong>Condition préalable:</strong>
+    <i>seuls les caractères f, b, l et r sont autorisés.</i>
+</p>
