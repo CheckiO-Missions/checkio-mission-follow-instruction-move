@@ -1,0 +1,146 @@
+<body data-author="freeman_lex">
+<div class="question-answer">
+    <div class="question">
+        <p>Je n'ai aucune idée de la manière de commencer à résoudre cette mission.</p>
+    </div>
+    <div class="answer">
+        <p>
+            💡 Faire quatre pas en avant de longueur 1 revient à sauter une fois en avant de longueur 4. Vous devez donc compter le nombre total de pas dans chaque direction, puis trouver deux différences correctes entre ces nombres.
+        </p>
+    </div>
+</div>
+<div class="question-answer">
+    <div class="question">
+        <p>Ok, de quoi dois-je partir?</p>
+    </div>
+    <div class="answer">
+        <p>
+            Dans notre cas, compter le nombre de pas dans chaque direction signifie compter le nombre de chaque lettre unique dans <b class="code">instructions</b>. Comme <b class="code">instructions</b> est une chaîne de caractères, vous pouvez utiliser la méthode <a target="_blank" href="https://www.w3schools.com/python/ref_string_count.asp">string.count()</a>, qui fait exactement cela! Déclarez une nouvelle variable, laissez in être <b class="code">c</b> avec la valeur de method.
+        </p>
+        <pre class="brush: python">
+instructions = "ffbrl"
+c = instructions.count
+        </pre>
+    </div>
+</div>
+<div class="question-answer">
+    <div class="question">
+        <p>
+            Ok, comment utiliser cette variable?
+        </p>
+    </div>
+    <div class="answer">
+        <p>
+            Vous pouvez maintenant appeler cette méthode quatre fois (avec un argument différent pour chaque direction) et trouver votre déplacement total dans chaque direction. 
+        </p>
+        <pre class="brush: python">
+instructions = "ffbrl"
+c = instructions.count
+print(c("r"), c("l"), c("f"), c("b"))
+        </pre>
+        <div class="output">
+            <p>Résultat:</p>
+            <pre>
+1, 1, 2, 1
+            </pre>
+        </div>
+    </div>
+</div>
+<div class="question-answer">
+    <div class="question">
+        <p>
+            Comment transformer ces décalages en coordonnées finales?
+        </p>
+    </div>
+    <div class="answer">
+        <p>
+            Vous devez penser à des directions opposées, sur le même axe. Si vous faites quatre pas en avant, puis deux pas en arrière, quel est votre déplacement final sur cet axe?
+        </p>
+        <p>
+            D'après la description, vous pouvez constater que la première coordonnée a une direction positive vers la droite et une direction négative vers la gauche (lorsque le pas est <b class="code">"l"</b>, cette coordonnée diminue), la deuxième coordonnée a une direction positive vers l'avant et une direction négative vers l'arrière (lorsque le pas est <b class="code">"f"</b>, cette coordonnée augmente).
+        </p>
+    </div>
+</div>
+<div class="question-answer">
+    <div class="question">
+        <p>
+            Quels calculs exacts dois-je effectuer?
+        </p>
+    </div>
+    <div class="answer">
+        <p>
+            Votre coordonnée finale sur chaque axe est une différence entre les déplacements respectifs dans les directions positives et négatives. Déclarons deux variables et trouvons ces différences.
+        </p>
+        <pre class="brush: python">
+axis_rl = c("r") - c("l")
+axis_fb = c("f") - c("b")
+        </pre>
+    </div>
+</div>
+<div class="question-answer">
+    <div class="question">
+        <p>À quoi devrait ressembler ma solution finale?</p>
+    </div>
+    <div class="answer">
+        <p>
+            Vous devez combiner les conseils précédents, intégrer l'ensemble du code dans une expression de fonction et renvoyer le tuple de deux variables, qui stocke les coordonnées finales.
+        </p>
+        <p>Voici la solution complète:</p>
+        <div class="spoiler">
+        <pre class="brush: python">
+def follow(instructions: str) -> tuple[int, int] | list[int]:
+
+    c = instructions.count
+    axis_fb = c('f') - c('b')
+    axis_rl = c('r') - c('l')
+    
+    return axis_rl, axis_fb 
+        </pre>
+        </div>
+    </div>
+</div>
+<div class="question-answer">
+    <div class="question">
+        <p>Montrez-moi d'autres solutions!<br />
+        parce que je veux être une vraie 🥇 Python Ninnjaa!</p>
+    </div>
+    <div class="answer">
+        <p>Bien sûr, prenez-le!</p>
+        <p>
+            Dans cette solution, vous effectuez des calculs dans la boucle <b class="code">for</b> et mettez à jour des variables prédéclarées, en tenant compte de l'axe pour chaque mouvement. 
+        </p>
+        <div class="spoiler">
+        <pre class="brush: python">
+def follow(instructions: str) -> tuple[int, int] | list[int]:
+
+    move = {"f": 1, "b": -1, "l": -1, "r": 1}
+    x = y = 0
+    for i in instructions:
+        x += move[i] * (i in "lr")
+        y += move[i] * (i in "fb")
+
+    return x, y
+        </pre>
+        </div>
+        <p>
+            Vous pouvez comprimer toute la logique en une seule ligne en utilisant l'expression <b class="code">lambda</b> (fonction anonyme) et la compréhension de liste.
+        </p>
+        <div class="spoiler">
+        <pre class="brush: python">
+follow = lambda i: [i.count(x)-i.count(y) for x, y in ('rl', 'fb')]
+        </pre>
+        </div>
+        <p><b>Click "Best solutions" at mission menu and see a lot of other interesting solutions!</b></p>
+    </div>
+</div>
+<div class="question-answer">
+    <div class="question">
+        <p>Merci beaucoup! Je comprends mieux maintenant! Tout fonctionne bien!</p>
+    </div>
+    <div class="answer">
+        <p>
+            👍 Heureux de l'apprendre!
+        </p>
+    </div>
+</div>
+</body>
