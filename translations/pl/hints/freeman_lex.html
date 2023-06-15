@@ -1,0 +1,145 @@
+<body data-author="freeman_lex">
+<div class="question-answer">
+    <div class="question">
+        <p>Nie mam pojęcia, jak zacząć rozwiązywać tę misję.</p>
+    </div>
+    <div class="answer">
+        <p>
+            💡 Wykonanie czterech kroków do przodu o długości 1 jest tym samym, co wykonanie jednego skoku do przodu o długości 4. Musi więc Pan policzyć całkowitą liczbę kroków w każdym kierunku, a następnie znaleźć dwie poprawne różnice między tymi liczbami.
+        </p>
+    </div>
+</div>
+<div class="question-answer">
+    <div class="question">
+        <p>Od czego powinienem zacząć?</p>
+    </div>
+    <div class="answer">
+        <p>
+            W naszym przypadku policzenie liczby kroków w każdym kierunku oznacza policzenie liczby każdej unikalnej litery w <b class="code">instructions</b>. Ponieważ <b class="code">instructions</b> jest ciągiem znaków, można użyć metody <a target="_blank" href="https://www.w3schools.com/python/ref_string_count.asp">string.count()</a>, która robi dokładnie to! Proszę zadeklarować nową zmienną, niech będzie to <b class="code">c</b> z wartością metody.
+        </p>
+        <pre class="brush: python">
+instructions = "ffbrl"
+c = instructions.count
+        </pre>
+    </div>
+</div>
+<div class="question-answer">
+    <div class="question">
+        <p>
+            Ok, jak używać tej zmiennej?
+        </p>
+    </div>
+    <div class="answer">
+        <p>
+            Teraz może Pan wywołać tę metodę cztery razy (z innym argumentem dla każdego kierunku) i sprawdzić całkowite przesunięcie w każdym kierunku. 
+        </p>
+        <pre class="brush: python">
+instructions = "ffbrl"
+c = instructions.count
+print(c("r"), c("l"), c("f"), c("b"))
+        </pre>
+        <div class="output">
+            <p>Wynik:</p>
+            <pre>
+1, 1, 2, 1</pre>
+        </div>
+    </div>
+</div>
+<div class="question-answer">
+    <div class="question">
+        <p>
+            Jak przekształcić te przesunięcia w ostateczne współrzędne?
+        </p>
+    </div>
+    <div class="answer">
+        <p>
+            Proszę pomyśleć o przeciwnych kierunkach na tej samej osi. Jeśli wykona Pan/Pani cztery kroki do przodu, a następnie dwa kroki do tyłu, jakie jest ostateczne przesunięcie na tej osi?
+        </p>
+        <p>
+            Z opisu wynika, że pierwsza współrzędna ma kierunek dodatni w prawo i ujemny w lewo (gdy krok jest <b class="code">"l"</b>, ta współrzędna maleje), druga współrzędna ma kierunek dodatni do przodu i ujemny do tyłu (gdy krok jest <b class="code">"f"</b>, ta współrzędna rośnie).
+        </p>
+    </div>
+</div>
+<div class="question-answer">
+    <div class="question">
+        <p>
+            Jakie dokładne obliczenia powinienem wykonać?
+        </p>
+    </div>
+    <div class="answer">
+        <p>
+            Pana końcowa współrzędna w każdej osi jest różnicą między odpowiednimi przesunięciami w kierunku dodatnim i ujemnym. Proszę zadeklarować dwie zmienne i znaleźć te różnice.
+        </p>
+        <pre class="brush: python">
+axis_rl = c("r") - c("l")
+axis_fb = c("f") - c("b")
+        </pre>
+    </div>
+</div>
+<div class="question-answer">
+    <div class="question">
+        <p>Jak powinno wyglądać moje ostateczne rozwiązanie?</p>
+    </div>
+    <div class="answer">
+        <p>
+            Proszę połączyć poprzednie wskazówki, zawinąć cały kod w wyrażenie funkcyjne i zwrócić krotkę dwóch zmiennych, które przechowują końcowe współrzędne.
+        </p>
+        <p>Oto całe rozwiązanie:</p>
+        <div class="spoiler">
+        <pre class="brush: python">
+def follow(instructions: str) -> tuple[int, int] | list[int]:
+
+    c = instructions.count
+    axis_fb = c('f') - c('b')
+    axis_rl = c('r') - c('l')
+    
+    return axis_rl, axis_fb 
+        </pre>
+        </div>
+    </div>
+</div>
+<div class="question-answer">
+    <div class="question">
+        <p>Proszę pokazać mi więcej rozwiązań!<br />
+        bo chcę być prawdziwą 🥇 Python Ninnjaa!</p>
+    </div>
+    <div class="answer">
+        <p>Jasne, proszę łapać!</p>
+        <p>
+            W tym rozwiązaniu wykonuje Pan obliczenia w pętli <b class="code">for</b> i aktualizuje wcześniej zadeklarowane zmienne, biorąc pod uwagę oś dla każdego ruchu. 
+        </p>
+        <div class="spoiler">
+        <pre class="brush: python">
+def follow(instructions: str) -> tuple[int, int] | list[int]:
+
+    move = {"f": 1, "b": -1, "l": -1, "r": 1}
+    x = y = 0
+    for i in instructions:
+        x += move[i] * (i in "lr")
+        y += move[i] * (i in "fb")
+
+    return x, y
+        </pre>
+        </div>
+        <p>
+            Całą logikę można skompresować w jednym wierszu za pomocą wyrażenia <b class="code">lambda</b> (funkcja anonimowa) i rozumienia listy.
+        </p>
+        <div class="spoiler">
+        <pre class="brush: python">
+follow = lambda i: [i.count(x)-i.count(y) for x, y in ('rl', 'fb')]
+        </pre>
+        </div>
+        <p>Proszę kliknąć <b>Best Solutions</b> w menu misji i zobaczyć wiele innych ciekawych rozwiązań!</p>
+    </div>
+</div>
+<div class="question-answer">
+    <div class="question">
+        <p>Dzięki! Teraz wiem i rozumiem więcej! Wszystko działa jak należy!</p>
+    </div>
+    <div class="answer">
+        <p>
+            miło mi to słyszeć!
+        </p>
+    </div>
+</div>
+</body>
