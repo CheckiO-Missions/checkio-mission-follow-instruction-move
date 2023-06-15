@@ -1,0 +1,55 @@
+<!-- Describe task in general -->
+
+<p><i>Otrzymali Państwo list od przyjaciela, z którym nie widzieli się Państwo od dłuższego czasu. W tym liście daje ci instrukcje, jak znaleźć ukryty skarb!</i></p>
+
+
+<p>
+   W tej misji należy postępować zgodnie z podaną listą instrukcji, które doprowadzą cię do określonego punktu na mapie. Lista instrukcji jest ciągiem, którego każda litera wskazuje kierunek następnego kroku.
+</p>
+
+
+<p>
+    Litera <b class="code">"f"</b> - nakazuje poruszać się do przodu, <b class="code">"b"</b> - do tyłu, <b class="code">"l"</b> - w lewo, a <b class="code">"r"</b> - w prawo.
+</p>
+
+<p>
+    Oznacza to, że jeśli lista Pana instrukcji to <b class="code">"fflff"</b>, powinien Pan przesunąć się dwa razy do przodu, zrobić jeden krok w lewo, a następnie ponownie przesunąć się dwa razy do przodu.
+</p>
+
+<p>
+    Proszę sobie wyobrazić, że znajduje się Pan/Pani na pozycji <b class="code">(0, 0)</b>. Jeśli przesunie się Pan/Pani do przodu, Pana/Pani pozycja zmieni się na <b class="code">(0, 1)</b>. Jeśli przesunie się Pan/Pani ponownie, będzie to <b class="code">(0, 2)</b>. Jeśli następny krok wykona Pan/Pani w lewo, Pana/Pani pozycja zmieni się na <b class="code">(-1, 2)</b>. Po kolejnych dwóch krokach do przodu Pana/Pani współrzędne będą wynosić <b class="code">(-1, 4)</b>.
+</p>
+
+<p>Państwa celem jest znalezienie ostatecznych współrzędnych. W naszym przypadku są to <b class="code">(-1, 4)</b>.</p>
+
+<!-- Explain input and output values -->
+<p>
+   <strong>Dane wejściowe:</strong> Ciąg znaków <span>(str{% if is_js %}ing{% endif %})</span>.
+</p>
+
+<p>
+   <strong>Wyjście:</strong> {% if is_js %}Tablica <span>(array)</span>{% else %} Krotka <span>(tuple)</span> lub lista <span>(list)</span>{% endif %} dwóch liczb całkowitych <span>{% if is_js %}(number){% else %}(int){% endif %}</span>.
+</p>
+
+
+<!-- Put some usage examples -->
+<div class="for_info_only">
+    <p>
+        <strong>Przykłady:</strong>
+    </p>
+
+<pre class="brush: {% if is_js %}javascript{% else %}python{% endif %}">{{init_code_tmpl}}</pre>
+</div>
+<!-- Here you can explain how it can be used in development and what is usage of this. -->
+<!-- The section is optional -->
+<p class="for_info_only">
+    <strong>Jak jest używany:</strong>
+    <i>w grach z mapą.</i>
+</p>
+
+<!-- Here you can explain some constraints for input-->
+<!-- The section is optional -->
+<p>
+    <strong>Warunek wstępny:</strong>
+    <i>dozwolone są tylko znaki f, b, l i r.</i>
+</p>
