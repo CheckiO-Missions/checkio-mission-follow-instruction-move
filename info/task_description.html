@@ -4,7 +4,7 @@
 
 
 <p>
-   In this mission you should follow a given list of instructions which will get you to a certain point on the map. A list of instructions is a <span translate="repeat">string</span>, each letter of this string points you in the direction of your next step.
+   In this mission you should follow a given list of instructions which will get you to a certain point on the map. A list of instructions is a string, each letter of this string points you in the direction of your next step.
 </p>
 
 
@@ -24,11 +24,11 @@
 
 <!-- Explain input and output values -->
 <p>
-    <strong>Input:</strong> A <span translate="repeat">string</span>.
+    <strong>Input:</strong> A string <span translate="no">(str{% if is_js %}ing{% endif %})</span>.
 </p>
 
 <p>
-    <strong>Output:</strong> {% if is_js %}An <span translate="repeat">array</span> of two <span translate="repeat">numbers</span>{% else %} A <span translate="repeat">tuple</span> or <span translate="repeat">list</span> of two <span translate="repeat">integers</span>{% endif %}.
+    <strong>Output:</strong> {% if is_js %}An <span translate="repeat">array</span>{% else %}A <span translate="repeat">tuple</span> or <span translate="repeat">list</span>{% endif %} of two integers <span translate="no">{% if is_js %}(number){% else %}(int){% endif %}</span>.
 </p>
 
 
