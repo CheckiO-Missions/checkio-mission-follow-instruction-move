@@ -1,0 +1,145 @@
+<body data-author="freeman_lex">
+<div class="question-answer">
+    <div class="question">
+        <p>我不知道如何开始解决这项任务。</p>
+    </div>
+    <div class="answer">
+        <p>
+            💡 长度为1的向前跳4步与长度为4的向前跳1步是相同的。因此，您需要计算每个方向的总步数，然后找出这些数字之间的两个正确的差。
+        </p>
+    </div>
+</div>
+<div class="question-answer">
+    <div class="question">
+        <p>好的，我应该从什么开始呢？</p>
+    </div>
+    <div class="answer">
+        <p>
+            在我们的例子中，计算每个方向的步数是指计算<b class="code">instructions</b> 中每个唯一字母的个数。由于<b class="code">instructions</b> 是一个字符串，您可以使用<a target="_blank" href="https://www.w3schools.com/python/ref_string_count.asp">string.count()</a> 方法，它可以实现这个功能！声明一个新变量，用method的值表示<b class="code">c</b> 。
+        </p>
+        <pre class="brush: python">
+instructions = "ffbrl"
+c = instructions.count
+        </pre>
+    </div>
+</div>
+<div class="question-answer">
+    <div class="question">
+        <p>
+            好了，如何使用这个变量呢？
+        </p>
+    </div>
+    <div class="answer">
+        <p>
+            现在您可以调用此方法四次（每个方向使用不同的参数），并找出每个方向的总位移。 
+        </p>
+        <pre class="brush: python">
+instructions = "ffbrl"
+c = instructions.count
+print(c("r"), c("l"), c("f"), c("b"))
+        </pre>
+        <div class="output">
+            <p>输出：</p>
+            <pre>
+1, 1, 2, 1</pre>
+        </div>
+    </div>
+</div>
+<div class="question-answer">
+    <div class="question">
+        <p>
+            如何将这些位移转换为最终坐标？
+        </p>
+    </div>
+    <div class="answer">
+        <p>
+            您应该考虑在同一轴上的相反方向。如果您前进四步，然后后退两步，您在这个轴上的最终移动是多少？
+        </p>
+        <p>
+            从描述中您可以看到，第一个坐标的正方向是右，负方向是左（当步幅为<b class="code">"l"</b> 时，该坐标减小），第二个坐标的正方向是前，负方向是后（当步幅为<b class="code">"f"</b> 时，该坐标增大）。
+        </p>
+    </div>
+</div>
+<div class="question-answer">
+    <div class="question">
+        <p>
+            我应该进行怎样的精确计算？
+        </p>
+    </div>
+    <div class="answer">
+        <p>
+            您在每个坐标轴上的最终坐标是正负方向各自移动的差值。让我们声明两个变量并找出这些差值。
+        </p>
+        <pre class="brush: python">
+axis_rl = c("r") - c("l")
+axis_fb = c("f") - c("b")
+        </pre>
+    </div>
+</div>
+<div class="question-answer">
+    <div class="question">
+        <p>那么，我的最终解决方案应该是怎样的呢？</p>
+    </div>
+    <div class="answer">
+        <p>
+            您需要结合之前的提示，将整个代码封装为函数表达式，并返回存储最终坐标的两个变量的元组。
+        </p>
+        <p>下面是整个解决方案：</p>
+        <div class="spoiler">
+        <pre class="brush: python">
+def follow(instructions: str) -> tuple[int, int] | list[int]:
+
+    c = instructions.count
+    axis_fb = c('f') - c('b')
+    axis_rl = c('r') - c('l')
+    
+    return axis_rl, axis_fb 
+        </pre>
+        </div>
+    </div>
+</div>
+<div class="question-answer">
+    <div class="question">
+        <p>告诉我更多的解决方案！<br />
+        因为我想成为一个真正的 🥇 Python Ninnjaa！</p>
+    </div>
+    <div class="answer">
+        <p>当然，抓住它！</p>
+        <p>
+            在这个解决方案中，你在<b class="code">for</b> 循环中进行计算，并更新预先声明的变量，同时考虑到每次移动的轴。 
+        </p>
+        <div class="spoiler">
+        <pre class="brush: python">
+def follow(instructions: str) -> tuple[int, int] | list[int]:
+
+    move = {"f": 1, "b": -1, "l": -1, "r": 1}
+    x = y = 0
+    for i in instructions:
+        x += move[i] * (i in "lr")
+        y += move[i] * (i in "fb")
+
+    return x, y
+        </pre>
+        </div>
+        <p>
+            您可以使用<b class="code">lambda</b> 表达式（匿名函数）和列表理解将所有逻辑压缩在一行中。
+        </p>
+        <div class="spoiler">
+        <pre class="brush: python">
+follow = lambda i: [i.count(x)-i.count(y) for x, y in ('rl', 'fb')]
+        </pre>
+        </div>
+        <p>点击任务菜单中的<b>Best Solutions</b> ，查看更多有趣的解决方案！</p>
+    </div>
+</div>
+<div class="question-answer">
+    <div class="question">
+        <p>谢谢！我现在知道并理解得更多了！一切正常！</p>
+    </div>
+    <div class="answer">
+        <p>
+            很高兴听到这个消息！
+        </p>
+    </div>
+</div>
+</body>
