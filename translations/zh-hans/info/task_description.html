@@ -1,0 +1,55 @@
+<!-- Describe task in general -->
+
+<p><i>您收到了一位朋友的来信，您已经有一段时间没有见到他或听到他的消息了。他在信中告诉您如何找到隐藏的宝藏！</i></p>
+
+
+<p>
+   在这个任务中，您必须按照给定的指示列表找到地图上的某一点。指示列表是一个字符串，这个字符串中的每个字母都为您指明了下一步的方向。
+</p>
+
+
+<p>
+    字母<b class="code">"f"</b> - 告诉您向前移动，<b class="code">"b"</b> - 向后移动，<b class="code">"l"</b> - 向左移动，<b class="code">"r"</b> - 向右移动。
+</p>
+
+<p>
+    这意味着，如果您的指令列表是<b class="code">"fflff"</b> ，那么您应该向前移动两次，向左移动一步，然后再次向前移动两次。
+</p>
+
+<p>
+    现在，假设您的位置是<b class="code">(0, 0)</b> 。如果您向前移动，您的位置将变为<b class="code">(0, 1)</b> 。如果您再次移动，您的位置将变为<b class="code">(0, 2)</b> 。如果您下一步向左移动，您的位置将变为<b class="code">(-1, 2)</b> 。再向前移动两步后，您的坐标将变为<b class="code">(-1, 4)</b> 。
+</p>
+
+<p>您的目标是找到最终坐标。在我们的例子中，它们是<b class="code">(-1, 4)</b> 。</p>
+
+<!-- Explain input and output values -->
+<p>
+   <strong>输入：</strong>字符串 <span>(str{% if is_js %}ing{% endif %})</span>.
+</p>
+
+<p>
+   <strong>输出：</strong> {% if is_js %}一个数组<span>(array)</span>{% else %} 一个元组<span>(tuple)</span> 或列表<span>(list)</span>{% endif %} 两个整数 <span>{% if is_js %}(number){% else %}(int){% endif %}</span>.
+</p>
+
+
+<!-- Put some usage examples -->
+<div class="for_info_only">
+    <p>
+        <strong>例子：</strong>
+    </p>
+
+<pre class="brush: {% if is_js %}javascript{% else %}python{% endif %}">{{init_code_tmpl}}</pre>
+</div>
+<!-- Here you can explain how it can be used in development and what is usage of this. -->
+<!-- The section is optional -->
+<p class="for_info_only">
+    <strong>如何使用：</strong>
+    <i>在有地图的游戏中。</i>
+</p>
+
+<!-- Here you can explain some constraints for input-->
+<!-- The section is optional -->
+<p>
+    <strong>前提条件：</strong>
+    <i>只允许字符f、b、l和r。</i>
+</p>
