@@ -1,0 +1,145 @@
+<body data-author="freeman_lex">
+<div class="question-answer">
+    <div class="question">
+        <p>Ich habe keine Ahnung, wie ich mit der Lösung dieser Aufgabe beginnen soll.</p>
+    </div>
+    <div class="answer">
+        <p>
+            💡 Vier Schritte vorwärts mit der Länge 1 zu machen ist dasselbe wie einmal mit der Länge 4 vorwärts zu springen. Sie müssen also die Gesamtzahl der Schritte in jede Richtung zählen und dann zwei korrekte Differenzen zwischen diesen Zahlen finden.
+        </p>
+    </div>
+</div>
+<div class="question-answer">
+    <div class="question">
+        <p>Ok, womit soll ich anfangen?</p>
+    </div>
+    <div class="answer">
+        <p>
+            In unserem Fall bedeutet das Zählen der Schritte in jede Richtung, dass Sie die Anzahl jedes einzelnen Buchstabens in <b class="code">instructions</b> zählen. Da <b class="code">instructions</b> eine Zeichenkette ist, können Sie die Methode <a target="_blank" href="https://www.w3schools.com/python/ref_string_count.asp">string.count()</a> verwenden, die genau das tut! Deklarieren Sie eine neue Variable und geben Sie in <b class="code">c</b> den Wert der Methode ein.
+        </p>
+        <pre class="brush: python">
+instructions = "ffbrl"
+c = instructions.count
+        </pre>
+    </div>
+</div>
+<div class="question-answer">
+    <div class="question">
+        <p>
+            Ok, wie verwenden Sie diese Variable?
+        </p>
+    </div>
+    <div class="answer">
+        <p>
+            Jetzt können Sie diese Methode viermal aufrufen (mit unterschiedlichen Argumenten für jede Richtung) und die Gesamtverschiebung in jeder Richtung ermitteln. 
+        </p>
+        <pre class="brush: python">
+instructions = "ffbrl"
+c = instructions.count
+print(c("r"), c("l"), c("f"), c("b"))
+        </pre>
+        <div class="output">
+            <p>Ausgabe:</p>
+            <pre>
+1, 1, 2, 1</pre>
+        </div>
+    </div>
+</div>
+<div class="question-answer">
+    <div class="question">
+        <p>
+            Wie lassen sich diese Verschiebungen in die endgültigen Koordinaten umwandeln?
+        </p>
+    </div>
+    <div class="answer">
+        <p>
+            Sie sollten über entgegengesetzte Richtungen auf derselben Achse nachdenken. Wenn Sie vier Schritte vorwärts und dann zwei Schritte rückwärts machen, wie groß ist dann Ihre endgültige Verschiebung auf dieser Achse?
+        </p>
+        <p>
+            Aus der Beschreibung können Sie ersehen, dass die erste Koordinate eine positive Richtung nach rechts und eine negative Richtung nach links hat (wenn der Schritt <b class="code">"l"</b> ist, verringert sich diese Koordinate), die zweite Koordinate hat eine positive Richtung nach vorne und eine negative - nach hinten (wenn der Schritt <b class="code">"f"</b> ist, erhöht sich diese Koordinate).
+        </p>
+    </div>
+</div>
+<div class="question-answer">
+    <div class="question">
+        <p>
+            Welche genauen Berechnungen muss ich anstellen?
+        </p>
+    </div>
+    <div class="answer">
+        <p>
+            Ihre Endkoordinate in jeder Achse ist die Differenz zwischen den jeweiligen Verschiebungen in positiver und negativer Richtung. Lassen Sie uns zwei Variablen deklarieren und diese Differenzen ermitteln.
+        </p>
+        <pre class="brush: python">
+axis_rl = c("r") - c("l")
+axis_fb = c("f") - c("b")
+        </pre>
+    </div>
+</div>
+<div class="question-answer">
+    <div class="question">
+        <p>Wie sollte also meine endgültige Lösung aussehen?</p>
+    </div>
+    <div class="answer">
+        <p>
+            Sie müssen die vorherigen Hinweise kombinieren, den gesamten Code in einen Funktionsausdruck verpacken und das Tupel aus zwei Variablen zurückgeben, das die endgültigen Koordinaten enthält.
+        </p>
+        <p>Hier ist die gesamte Lösung:</p>
+        <div class="spoiler">
+        <pre class="brush: python">
+def follow(instructions: str) -> tuple[int, int] | list[int]:
+
+    c = instructions.count
+    axis_fb = c('f') - c('b')
+    axis_rl = c('r') - c('l')
+    
+    return axis_rl, axis_fb 
+        </pre>
+        </div>
+    </div>
+</div>
+<div class="question-answer">
+    <div class="question">
+        <p>Zeigen Sie mir mehr Lösungen!<br />
+        denn ich will ein echter 🥇 Python Ninnjaa sein!</p>
+    </div>
+    <div class="answer">
+        <p>Klar, schnapp sie dir!</p>
+        <p>
+            In dieser Lösung führen Sie Berechnungen in der Schleife <b class="code">for</b> durch und aktualisieren vorher deklarierte Variablen, wobei Sie die Achse für jeden Zug berücksichtigen. 
+        </p>
+        <div class="spoiler">
+        <pre class="brush: python">
+def follow(instructions: str) -> tuple[int, int] | list[int]:
+
+    move = {"f": 1, "b": -1, "l": -1, "r": 1}
+    x = y = 0
+    for i in instructions:
+        x += move[i] * (i in "lr")
+        y += move[i] * (i in "fb")
+
+    return x, y
+        </pre>
+        </div>
+        <p>
+            Sie können die gesamte Logik in einer Zeile komprimieren, indem Sie <b class="code">lambda</b> expression (anonyme Funktion) und list comprehension verwenden.
+        </p>
+        <div class="spoiler">
+        <pre class="brush: python">
+follow = lambda i: [i.count(x)-i.count(y) for x, y in ('rl', 'fb')]
+        </pre>
+        </div>
+        <p>Klicken Sie auf <b>Best Solutions</b> im Menü Mission und sehen Sie sich viele andere interessante Lösungen an!</p>
+    </div>
+</div>
+<div class="question-answer">
+    <div class="question">
+        <p>Vielen Dank! Ich weiß und verstehe jetzt mehr! Alles funktioniert einwandfrei!</p>
+    </div>
+    <div class="answer">
+        <p>
+            👍 Freut mich zu hören!
+        </p>
+    </div>
+</div>
+</body>
