@@ -1,0 +1,57 @@
+<!-- Describe task in general -->
+<img src="{{MEDIA_CONVERT}}title.png" class="title_img" />
+<p><i>Sie haben einen Brief von einem Freund erhalten, den Sie schon eine Weile nicht mehr gesehen oder gehört haben. In diesem Brief gibt er Ihnen Anweisungen, wie Sie einen versteckten Schatz finden können!</i></p>
+
+
+<p>
+   In dieser Mission sollen Sie einer vorgegebenen Liste von Anweisungen folgen, die Sie zu einem bestimmten Punkt auf der Karte führen wird. Eine Liste von Anweisungen ist eine Zeichenkette. Jeder Buchstabe dieser Zeichenkette zeigt Ihnen die Richtung Ihres nächsten Schritts an.
+</p>
+
+
+<p>
+    Der Buchstabe <b class="code">"f"</b> - sagt Ihnen, dass Sie vorwärts gehen sollen, <b class="code">"b"</b> - rückwärts, <b class="code">"l"</b> - links und <b class="code">"r"</b> - rechts.
+</p>
+
+<p>
+    Das bedeutet, wenn die Liste Ihrer Anweisungen <b class="code">"fflff"</b> lautet, dann sollten Sie sich zwei Mal vorwärts bewegen, einen Schritt nach links machen und dann wieder zwei Mal vorwärts gehen.
+</p>
+<p style="text-align: center;">
+    <img  title="example" src="{{MEDIA}}follow-instructions.png" alt="example" style="max-height: 500px"/>
+</p>
+<p>
+    Stellen wir uns nun vor, Sie befinden sich auf der Position <b class="code">(0, 0)</b>. Wenn Sie sich vorwärts bewegen, ändert sich Ihre Position zu <b class="code">(0, 1)</b>. Wenn Sie sich noch einmal bewegen, ist es <b class="code">(0, 2)</b>. Wenn Ihr nächster Schritt nach links geht, wird Ihre Position <b class="code">(-1, 2)</b>. Nach den nächsten zwei Schritten vorwärts lauten Ihre Koordinaten <b class="code">(-1, 4)</b>.
+</p>
+
+<p>Ihr Ziel ist es, Ihre endgültigen Koordinaten zu finden. Wie in unserem Fall sind das <b class="code">(-1, 4)</b>.</p>
+
+<!-- Explain input and output values -->
+<p>
+   <strong>Eingabe:</strong> Eine Zeichenkette <span>(str{% if is_js %}ing{% endif %})</span>.
+</p>
+
+<p>
+   <strong>Ausgabe:</strong> {% if is_js %}Ein Array <span>(array)</span>{% else %} Ein Tupel <span>(tuple)</span> oder eine Liste <span>(list)</span>{% endif %} aus zwei ganzen Zahlen <span>{% if is_js %}(number){% else %}(int){% endif %}</span>.
+</p>
+
+
+<!-- Put some usage examples -->
+<div class="for_info_only">
+    <p>
+        <strong>Beispiele:</strong>
+    </p>
+
+<pre class="brush: {% if is_js %}javascript{% else %}python{% endif %}">{{init_code_tmpl}}</pre>
+</div>
+<!-- Here you can explain how it can be used in development and what is usage of this. -->
+<!-- The section is optional -->
+<p class="for_info_only">
+    <strong>Wie es verwendet wird:</strong>
+    <i>in Spielen mit einer Karte.</i>
+</p>
+
+<!-- Here you can explain some constraints for input-->
+<!-- The section is optional -->
+<p>
+    <strong>Vorbedingung:</strong>
+    <i>nur die Zeichen f, b, l und r sind erlaubt.</i>
+</p>
